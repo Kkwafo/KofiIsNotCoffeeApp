@@ -1,4 +1,4 @@
-import ProductCard from '@/app/products/ProductCard'
+import ProductCard from '@/components/products/ProductCard'
 import Heading from '@/components/ui/Heading'
 import { prisma } from '@/src/lib/prisma'
 
