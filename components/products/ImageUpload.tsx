@@ -1,13 +1,23 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 "use client"
 import { CldUploadWidget } from 'next-cloudinary'
+import { useState } from 'react';
 import { TbPhotoPlus } from 'react-icons/tb'
+import Image from 'next/image';
 export default function ImageUpload() {
+  const [ imageUrl, setImageUrl ] = useState('');
+
+
   return (
     <CldUploadWidget
       uploadPreset='sbd7objh'
       options={{ maxFiles: 1 }}
       onSuccess={(result, { widget }) => {
-        console.log(result)
+        if (result.event === 'success') {
+          widget.close()
+          //@ts-expect-error
+          setImageUrl(result.info?.secure_url)
+        }
       }}>
       {({ open }) => (
         <>
@@ -23,8 +33,25 @@ export default function ImageUpload() {
                 size={50}
               />
               <p className='text-lg font-semibold'>Agregar Imagen</p>
+              {imageUrl && (
+                <div className='absolute inset-o w-full h-full'>
+                  <Image
+                    fill
+                    style={{ objectFit: 'contain' }}
+                    src={imageUrl}
+                    alt='Imagen de Producto'
+                  >
+
+                  </Image>
+                </div>
+              )}
             </div>
           </div>
+          <input
+            type='hidden'
+            name='image'
+            value={imageUrl}
+          />
         </>
       )}
 
