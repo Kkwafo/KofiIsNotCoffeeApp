@@ -1,39 +1,24 @@
-import OrderCard from '@/components/order/OrderCard';
+import ProductTable from '@/components/products/ProductsTable';
 import Heading from '@/components/ui/Heading';
 import { prisma } from '@/src/lib/prisma';
 
-async function getPendingOrders() {
-  const orders = await prisma.order.findMany({
-    where: {
-      status: false
-    },
+
+async function getProducts() {
+  const products = await prisma.product.findMany({
     include: {
-      orderProducts: {
-        include: {
-          product: true
-        }
-      }
+      category: true
     }
-  });
-  return orders;
+  })
+  return products;
 }
+export type ProductWithCategory = Awaited<ReturnType<typeof getProducts>>
 export default async function ProductsPage() {
-  const orders = await getPendingOrders();
-  console.log(JSON.stringify(orders, null, 2));
+  const products = await getProducts();
+  console.log(products)
   return (
     <>
       <Heading>Administrar Productos</Heading>
-      {orders.length ? (
-        <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-5 mt-5">
-          {orders.map(order => (
-            <OrderCard
-              key={order.id}
-              order={order} />
-          ))}
-        </div>
-      ) : (
-        <p>No hay pedidos pendientes</p>
-      )}
+      <ProductTable products={products} />
     </>
   )
 }
