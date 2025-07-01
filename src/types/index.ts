@@ -10,3 +10,12 @@ export type OrderWithProducts = Order & {
     product: Product
   })[]
 }
+
+export type DailyProductReport = {
+  productId: number
+  productName: string
+  categoryId: number
+  categoryName: string
+  quantitySold: number
+  subtotal: number // cantidad * precio
+}

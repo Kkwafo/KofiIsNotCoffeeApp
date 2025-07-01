@@ -12,7 +12,7 @@ export default function Home() {
         </div>
 
         <h1 className="text-4xl font-bold mb-4 text-gray-800 drop-shadow-md">
-          Sistema de Gestión de Cocina - DEMO
+          Sistema de Gestión de Cocina
         </h1>
 
         <p className="text-lg text-gray-700 mb-8">
