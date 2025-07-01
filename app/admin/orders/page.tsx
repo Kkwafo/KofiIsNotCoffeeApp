@@ -19,7 +19,6 @@ async function getPendingOrders() {
 }
 export default async function OrderPage() {
   const orders = await getPendingOrders();
-  console.log(JSON.stringify(orders, null, 2));
   return (
     <>
       <Heading>Administrar Ordenes</Heading>

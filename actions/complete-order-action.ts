@@ -21,6 +21,5 @@ export async function completeOrder(formData: FormData) {
     } catch (error) {
       console.error('Error completing order:', error)
     }
-    console.log('desde completeOrder')
   }
 }

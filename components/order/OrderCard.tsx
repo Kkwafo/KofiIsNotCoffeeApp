@@ -7,7 +7,6 @@ type OrderCardProps = {
 
 }
 export default function OrderCard({ order }: OrderCardProps) {
-  console.log(order);
   return (
     <section
       aria-labelledby="summary-heading"
