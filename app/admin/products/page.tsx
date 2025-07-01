@@ -46,19 +46,21 @@ export default async function ProductsPage({ searchParams }: { searchParams: { p
     <>
       <Heading>Administrar Productos</Heading>
 
-      <div className="flex flex-col lg:flex-row lg:justify-between items-stretch gap-6 my-8 flex-wrap">
+      <div className="flex justify-center lg:justify-start my-8 w-full lg:w-auto">
         <Link
           href="/admin/products/new"
-          className="group flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-600 text-white text-base font-bold rounded-lg shadow-md px-6 py-2 text-center transition w-full lg:w-auto"
+          className="group relative flex items-center justify-center gap-3 bg-gradient-to-r from-amber-500 to-yellow-400 hover:from-amber-600 hover:to-yellow-500 text-white text-lg font-bold rounded-2xl shadow-lg px-8 py-4 text-center transition duration-300 overflow-hidden w-full lg:w-auto"
         >
-          <PlusIcon className="h-5 w-5 transition-transform group-hover:rotate-90" />
-          <span>Crear Producto</span>
+          <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity rounded-2xl animate-pulse"></div>
+          <PlusIcon className="h-6 w-6 transition-transform group-hover:scale-125 group-hover:rotate-12" />
+          <span className="z-10">Crear Producto</span>
         </Link>
+
 
         <div className="w-full lg:flex-1">
           <ProductSerchForm />
         </div>
-      </div>
+      </div >
 
 
       <ProductTable products={products} />
