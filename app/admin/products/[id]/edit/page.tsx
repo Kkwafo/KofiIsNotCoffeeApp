@@ -1,5 +1,5 @@
 import { prisma } from '@/src/lib/prisma'
-import { redirect } from 'next/navigation'
+import { notFound } from 'next/navigation'
 
 async function getProductById(id: number) {
   const product = await prisma.product.findUnique({
@@ -8,7 +8,7 @@ async function getProductById(id: number) {
     }
   })
   if (!product) {
-    redirect('/404')
+    notFound()
   }
   return product
 }
