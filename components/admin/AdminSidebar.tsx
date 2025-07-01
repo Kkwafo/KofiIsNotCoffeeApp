@@ -5,7 +5,7 @@ const adminNavigation = [
   { url: '/admin/orders', text: 'Ordenes', blank: false },
   { url: '/admin/products', text: 'Productos', blank: false },
   { url: '/order/cafe', text: 'Ver Quiosco', blank: true },
-  { url: '/admin/reports', text: 'Reportes', blank: true },
+  { url: '/admin/reports', text: 'Reportes', blank: false },
 ]
 
 export default function AdminSidebar() {

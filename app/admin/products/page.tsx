@@ -25,8 +25,11 @@ async function getProducts(page: number, pageSize: number) {
 
 export type ProductWithCategory = Awaited<ReturnType<typeof getProducts>>;
 
-export default async function ProductsPage({ searchParams }: { searchParams: { page: string } }) {
-  const page = Number(searchParams?.page) || 1;
+type SearchParamsType = Promise<{ page?: string }>;
+
+export default async function ProductsPage({ searchParams }: { searchParams: SearchParamsType }) {
+  const { page: pageParam } = await searchParams;
+  const page = Number(pageParam) || 1;
   const pageSize = 10;
 
   if (isNaN(page) || page < 1) {
@@ -56,12 +59,10 @@ export default async function ProductsPage({ searchParams }: { searchParams: { p
           <span className="z-10">Crear Producto</span>
         </Link>
 
-
         <div className="w-full lg:flex-1">
           <ProductSerchForm />
         </div>
-      </div >
-
+      </div>
 
       <ProductTable products={products} />
 

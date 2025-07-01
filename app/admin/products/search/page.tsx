@@ -14,25 +14,29 @@ async function searchProduct(searchTerm: string) {
     include: {
       category: true
     }
-  })
-  return products
+  });
+  return products;
 }
 
-export default async function SearchPage({ searchParams }: { searchParams: { search: string } }) {
-  const products = await searchProduct(searchParams.search)
+type SearchParamsType = Promise<{ search?: string }>;
+
+export default async function SearchPage({ searchParams }: { searchParams: SearchParamsType }) {
+  const { search } = await searchParams;
+  const products = await searchProduct(search ?? '');
+
   return (
     <>
       <Heading>
-        Resultados de busqueda : {searchParams.search}
+        Resultados de búsqueda: {search ?? '(sin término)'}
       </Heading>
-      <div className='flex flex-col lg:flex-row lg:justify-end gap-5'>
+      <div className="flex flex-col lg:flex-row lg:justify-end gap-5">
         <ProductSerchForm />
       </div>
-      {products.length ? (<ProductTable
-        products={products} />): <p className='text-center text-lg'>  
-          No hay resultados
-          </p>}
-
+      {products.length ? (
+        <ProductTable products={products} />
+      ) : (
+        <p className="text-center text-lg">No hay resultados</p>
+      )}
     </>
-  )
+  );
 }

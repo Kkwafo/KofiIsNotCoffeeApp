@@ -5,6 +5,7 @@ import Heading from '@/components/ui/Heading'
 import { prisma } from '@/src/lib/prisma'
 import { notFound } from 'next/navigation'
 
+type ProductIdParams = Promise<{ id: string }>;
 async function getProductById(id: number) {
   const product = await prisma.product.findUnique({
     where: {
@@ -17,9 +18,9 @@ async function getProductById(id: number) {
   return product
 }
 
-export default async function EditProductsPage({ params }: { params: { id: string } }) {
-  const resolverdParams = await params;
-  const product = await getProductById(Number(resolverdParams.id))
+export default async function EditProductsPage({ params }: { params: ProductIdParams }) {
+  const { id } = await params
+  const product = await getProductById(Number(id))
   return (
     <>
       <Heading>Editar Producto:{product.name}</Heading>

@@ -4,8 +4,11 @@ import ReportTypeSelector from '@/components/reports/ReportTypeSelection';
 import { generateProductReport } from '@/src/utils/generate-daily-product-report';
 import ReportExportButton from '@/components/reports/ReportExportButton';
 
-export default async function ReportPage({ searchParams }: { searchParams: { type?: string } }) {
-  const reportType = searchParams.type || "daily";
+type SearchParamsType = Promise<{ type?: string }>;
+
+export default async function ReportPage({ searchParams }: { searchParams: SearchParamsType }) {
+  const { type } = await searchParams;
+  const reportType = type || "daily";
 
   const now = new Date();
   let start: Date;
