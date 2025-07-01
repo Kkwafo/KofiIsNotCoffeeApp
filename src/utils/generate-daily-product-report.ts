@@ -9,20 +9,15 @@ export type DailyProductReport = {
   subtotal: number
 }
 
-export async function generateDailyProductReport(): Promise<
-  DailyProductReport[]
-> {
-  const startOfDay = new Date()
-  startOfDay.setHours(0, 0, 0, 0)
-
-  const endOfDay = new Date()
-  endOfDay.setHours(23, 59, 59, 999)
-
-  const ordersToday = await prisma.order.findMany({
+export async function generateProductReport(
+  start: Date,
+  end: Date
+): Promise<DailyProductReport[]> {
+  const orders = await prisma.order.findMany({
     where: {
-      orderReadyAt: {
-        gte: startOfDay,
-        lte: endOfDay,
+      date: {
+        gte: start,
+        lte: end,
       },
     },
     include: {
@@ -36,15 +31,34 @@ export async function generateDailyProductReport(): Promise<
         },
       },
     },
-  })
+  }) as Array<{
+    id: number
+    name: string
+    date: Date
+    total: number
+    status: boolean
+    orderReadyAt: Date | null
+    orderProducts: Array<{
+      quantity: number
+      product: {
+        id: number
+        name: string
+        price: number
+        category: {
+          id: number
+          name: string
+        }
+      }
+    }>
+  }>
 
   const reportMap = new Map<number, DailyProductReport>()
 
-  ordersToday.forEach((order) => {
+  orders.forEach((order) => {
     order.orderProducts.forEach((op) => {
       const productId = op.product.id
-      const current = reportMap.get(productId)
       const subtotal = op.quantity * op.product.price
+      const current = reportMap.get(productId)
 
       if (current) {
         current.quantitySold += op.quantity
@@ -63,13 +77,10 @@ export async function generateDailyProductReport(): Promise<
   })
 
   const reportArray = Array.from(reportMap.values())
-
-  // Ordenar por categoría y luego por producto
-  reportArray.sort((a, b) => {
-    if (a.categoryName < b.categoryName) return -1
-    if (a.categoryName > b.categoryName) return 1
-    return a.productName.localeCompare(b.productName)
-  })
-
+  reportArray.sort(
+    (a, b) =>
+      a.categoryName.localeCompare(b.categoryName) ||
+      a.productName.localeCompare(b.productName)
+  )
   return reportArray
 }
