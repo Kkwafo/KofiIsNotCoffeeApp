@@ -5,6 +5,7 @@ const adminNavigation = [
   { url: '/admin/orders', text: 'Ordenes', blank: false },
   { url: '/admin/products', text: 'Productos', blank: false },
   { url: '/order/cafe', text: 'Ver Quiosco', blank: true },
+  { url: '/admin/reports', text: 'Reportes', blank: true },
 ]
 
 export default function AdminSidebar() {
@@ -17,9 +18,9 @@ export default function AdminSidebar() {
         <nav className="flex flex-col">
           {adminNavigation.map((link) => (
             <AdminRout
-            key={link.url}
-            link={link}
-            
+              key={link.url}
+              link={link}
+
             />
           ))}
         </nav>

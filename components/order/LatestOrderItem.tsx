@@ -10,7 +10,7 @@ export default function LatestOrderItem({ order }: LatestOrderItemProps) {
         Cliente:{order.name}
       </p>
       <ul
-        className='divide-y divide-gary-200 border-t border-gray-200 text-sm font-midium text-gray-500'
+        className='divide-y divide-gary-200 border-t border-orange-200 text-sm font-midium text-orange-500'
         role='list'
       >
         {order.orderProducts.map(product => (
