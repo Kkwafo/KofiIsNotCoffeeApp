@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 KofiIsNotCoffeeApp
 
-## Getting Started
+![KofiIsNotCoffeeApp Banner](https://placehold.co/1200x300?text=KofiIsNotCoffeeApp+by+Kofi+Kwafo+Awua)
 
-First, run the development server:
+**KofiIsNotCoffeeApp** es una solución web moderna para la **gestión de pedidos en restaurantes**, creada a partir de un problema real que tuvo un amigo con su emprendimiento de comidas rápidas. Este proyecto nace con la idea de brindar un sistema escalable, fácil de usar y adaptable a restaurantes grandes o cadenas gastronómicas.
 
+---
+
+## 🎯 Objetivos
+✅ Mejorar el control de pedidos en cocina.  
+✅ Visualizar pedidos en tiempo real.  
+✅ Organizar órdenes por categorías.  
+✅ Administrar productos, menús y reportes.  
+✅ Escalable para múltiples sucursales.
+
+---
+
+## 🛠️ Stack Técnico
+- **Next.js 15 + Turbopack** (SSR/SSG híbrido y rápido)
+- **React 19** (última versión)
+- **TypeScript 5** (seguridad y escalabilidad)
+- **TailwindCSS 4** (UI moderna y responsive)
+- **Prisma ORM + PostgreSQL**
+- **Zustand** (estado global simple y eficaz)
+- **SWR** (fetch reactivo y revalidación en tiempo real)
+- **Zod** (validaciones robustas)
+- **React Toastify** (notificaciones elegantes)
+- **xlsx** (exportación de reportes a Excel)
+- **Heroicons + React Icons** (íconos profesionales)
+- **next-cloudinary** (subida y gestión de imágenes en la nube)
+
+---
+
+## 🔑 Deploy en Verser
+Este proyecto se encuentra deployed en:  
+[`kofiisnotCoffeApp`](https://github.com/Kkwafo/KofiIsNotCoffeeApp/tree/kofiisnotCoffeApp)
+
+---
+
+## ⚙️ Funcionalidades principales
+- 📦 CRUD completo de productos y categorías.
+- 🛒 Panel de pedidos con confirmación y total dinámico.
+- 👨‍🍳 Administración de órdenes listas para cocina.
+- 📊 Reportes detallados de ventas con exportación a Excel.
+- 🔍 Búsqueda de productos.
+- 🕒 Selección de reportes por turno (día, mañana, tarde).
+
+---
+
+## 📖 Instalación local
+Cloná el proyecto y levantá el entorno de desarrollo:
 ```bash
+git clone https://github.com/Kkwafo/KofiIsNotCoffeeApp.git
+cd KofiIsNotCoffeeApp
+git checkout kofiisnotCoffeApp
+npm install
+npx prisma migrate dev
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
