@@ -49,7 +49,7 @@ export default async function ProductsPage({ searchParams }: { searchParams: Sea
     <>
       <Heading>Administrar Productos</Heading>
 
-      <div className="flex justify-center lg:justify-start my-8 w-full lg:w-auto">
+      <div className="flex flex-col-reverse lg:flex-row justify-center lg:justify-start my-8 w-full lg:w-auto gap-5">
         <Link
           href="/admin/products/new"
           className="group relative flex items-center justify-center gap-3 bg-gradient-to-r from-amber-500 to-yellow-400 hover:from-amber-600 hover:to-yellow-500 text-white text-lg font-bold rounded-2xl shadow-lg px-8 py-4 text-center transition duration-300 overflow-hidden w-full lg:w-auto"
